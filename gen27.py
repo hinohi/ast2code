@@ -21,6 +21,7 @@ EXPR_ATOM = (
     ast27.Name, ast27.Str, ast27.Num,
     ast27.List, ast27.ListComp,
     ast27.Dict, ast27.DictComp,
+    ast27.Set, ast27.SetComp,
     ast27.Tuple, ast27.GeneratorExp,
     ast27.Repr, ast27.Yield,
 )
