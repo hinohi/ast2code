@@ -813,7 +813,10 @@ class CodeGen27:
         )
 
     def visit_yield(self, node, level):
-        return '(yield {value})'.format(value=self.generate(node.value, level))
+        if node.value is None:
+            return 'yield'
+        else:
+            return '(yield {value})'.format(value=self.generate(node.value, level))
 
     def visit_ellipsis(self, node, level):
         return '...'
