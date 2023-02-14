@@ -128,7 +128,8 @@ class CodeGen27:
             return '(%s)' % child_str
         return child_str
 
-    def _gen_docstring(self, node):
+    @staticmethod
+    def _gen_docstring(node):
         if not isinstance(node, (ast27.Module, ast27.ClassDef, ast27.FunctionDef)):
             return None
         if not node.body:
@@ -138,7 +139,7 @@ class CodeGen27:
         if not isinstance(node.body[0].value, ast27.Str):
             return None
         s = node.body[0].value
-        if s.has_b:
+        if s.kind == 'b':
             b = 'b'
         else:
             b = ''
@@ -754,8 +755,9 @@ class CodeGen27:
             generators=' '.join(self.generate(g, level) for g in node.generators),
         )
 
-    def visit_str(self, node, level):
-        if node.has_b:
+    @staticmethod
+    def visit_str(node, level):
+        if node.kind == 'b':
             return repr(node.s)
         elif isinstance(node.s, bytes):
             return repr(node.s.decode('utf-8'))
