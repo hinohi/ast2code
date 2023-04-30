@@ -515,7 +515,7 @@ class CodeGen27:
         args = []
         for arg in node.args:
             args.append(self.generate(arg, level))
-        i = len(node.defaults) - len(node.args)
+        i = len(node.args) - len(node.defaults)
         for default in node.defaults:
             args[i] = '{arg}={default}'.format(
                 arg=args[i],
